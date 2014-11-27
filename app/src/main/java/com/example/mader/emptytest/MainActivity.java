@@ -2,12 +2,20 @@ package com.example.mader.emptytest;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,9 +24,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -71,7 +84,6 @@ public class MainActivity extends ActionBarActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle.syncState();
-
     }
 
 
@@ -133,8 +145,14 @@ public class MainActivity extends ActionBarActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+        protected List<String> images;
 
         public PlaceholderFragment() {
+            //Build images list
+            images = new ArrayList<String>();
+            images.add("http://makro-tom.de/var/albums/landschaft/baume/Baum_Gegenlicht_Holsthum.jpg");
+            images.add("http://www.rensch-haus.com/startseite/images_anim/Klarner.jpg");
+            images.add("http://www.colourpoint-lackiererei.de/wp-content/uploads/2011/02/Boot-Vorher.jpg");
         }
 
         @Override
@@ -152,6 +170,25 @@ public class MainActivity extends ActionBarActivity {
             if(v != null) {
                 TextView tv = (TextView) v.findViewById(R.id.text_content);
                 tv.setText("Hallo Ich!");
+
+                RecyclerView recList = (RecyclerView) v.findViewById(R.id.cardList);
+                recList.setHasFixedSize(true);
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                recList.setLayoutManager(llm);
+                recList.setItemAnimator(new DefaultItemAnimator());
+
+                recList.setAdapter(new ImageAdapter(images));
+//
+//                String imageUrl = "http://makro-tom.de/var/albums/landschaft/baume/Baum_Gegenlicht_Holsthum.jpg";
+//
+//                ImageView iv = (ImageView) v.findViewById(R.id.imageView);
+//                iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//
+//                new DownloadImageTask((ImageView) iv).execute(imageUrl);
+//
+//                TextView itv = (TextView) v.findViewById(R.id.textView);
+//                itv.setText(imageUrl);
             }
         }
     }

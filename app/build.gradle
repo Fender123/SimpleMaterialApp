@@ -26,7 +26,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.2'
+    compile 'com.android.support:appcompat-v7:21.0.+'
+    compile 'com.android.support:cardview-v7:21.0.+'
+    compile 'com.android.support:recyclerview-v7:21.0.+'
+
+
     // Toolbar and ActionBarCompat-v21 (includes support-v7:21.0.x)
     compile 'com.balysv.materialmenu:material-menu-toolbar:1.5.0'
 }

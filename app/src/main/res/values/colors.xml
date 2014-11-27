@@ -2,4 +2,5 @@
 <resources>
     <item name="colorPrimary" type="color">#4caf50</item>
     <item name="colorPrimaryDark" type="color">#388e3c</item>
+    <item name="white" type="color">#ffffff</item>
 </resources>
